@@ -5,5 +5,5 @@ cd $(dirname $0)/..
 
 if [ "$SHELL" != "/bin/zsh" ]
 then
-  chsh -s /bin/zsh hamzaghani
+  chsh -s /bin/zsh GhaniH
 fi
