@@ -3,8 +3,14 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/hamzaghani/.oh-my-zsh"
+export ZSH="/Users/ghanih/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -107,12 +113,12 @@ zplug "dracula/zsh", as:theme
 zplug "plugins/docker",   from:oh-my-zsh
 zplug "plugins/docker-compose",   from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/osx",   from:oh-my-zsh
+zplug "plugins/macos",   from:oh-my-zsh
 zplug "plugins/yarn",   from:oh-my-zsh
 zplug "plugins/gradle",   from:oh-my-zsh
-zplug "plugins/nvm",   from:oh-my-zsh
 zplug "plugins/sdk",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 
@@ -129,6 +135,15 @@ zplug load
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/hamzaghani/.sdkman"
-[[ -s "/Users/hamzaghani/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hamzaghani/.sdkman/bin/sdkman-init.sh"
+# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/ghanih/.sdkman"
+[[ -s "/Users/ghanih/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ghanih/.sdkman/bin/sdkman-init.sh"
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+alias superpull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;"
+alias work="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} profile use work\;"
+alias rebaseRoot="git rebase -i --root"
