@@ -1,22 +1,21 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-export GOPATH=$HOME/golang
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-
+export ANDROID_HOME="/Users/hamzaumarfarooqghani/Library/Android/sdk"
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/ghanih/.oh-my-zsh"
+export ZSH="/Users/hamzaumarfarooqghani/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -59,6 +58,7 @@ ZSH_THEME="robbyrussell"
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -114,14 +114,13 @@ zplug "plugins/docker",   from:oh-my-zsh
 zplug "plugins/docker-compose",   from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/macos",   from:oh-my-zsh
-zplug "plugins/yarn",   from:oh-my-zsh
 zplug "plugins/gradle",   from:oh-my-zsh
 zplug "plugins/sdk",   from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
-
+zplug "nnao45/zsh-kubectl-completion"
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -132,12 +131,13 @@ fi
 zplug load
 
 #This is for NVM 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  
 # #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/ghanih/.sdkman"
-[[ -s "/Users/ghanih/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ghanih/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/hamzaumarfarooqghani/.sdkman"
+[[ -s "/Users/hamzaumarfarooqghani/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hamzaumarfarooqghani/.sdkman/bin/sdkman-init.sh"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
 # tabtab source for packages
@@ -147,3 +147,12 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 alias superpull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;"
 alias work="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} profile use work\;"
 alias rebaseRoot="git rebase -i --root"
+
+x86(){
+  nvm use v18.19.0
+}
+
+arm(){
+  nvm use v18.16.0
+}
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
