@@ -7,9 +7,9 @@ export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-export ANDROID_HOME="/Users/hamzaumarfarooqghani/Library/Android/sdk"
+export ANDROID_HOME="/Users/ghanih/Library/Android/sdk"
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/hamzaumarfarooqghani/.oh-my-zsh"
+export ZSH="/Users/ghanih/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
