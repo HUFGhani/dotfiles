@@ -4,7 +4,7 @@ export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="$(/opt/homebrew/bin/brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 export ANDROID_HOME="/Users/ghanih/Library/Android/sdk"
@@ -136,8 +136,8 @@ zplug load
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
   
 # #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/hamzaumarfarooqghani/.sdkman"
-[[ -s "/Users/hamzaumarfarooqghani/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hamzaumarfarooqghani/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/ghanih/.sdkman"
+[[ -s "/Users/ghanih/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ghanih/.sdkman/bin/sdkman-init.sh"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
 # tabtab source for packages
@@ -145,14 +145,39 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 alias superpull="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;"
-alias work="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} profile use work\;"
+alias work="find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} profile use work \;"
 alias rebaseRoot="git rebase -i --root"
 
-x86(){
-  nvm use v18.19.0
-}
 
 arm(){
   nvm use v18.16.0
 }
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export CXXFLAGS="-stdlib=libc++"
+
+export OKTA_AWSCLI_ORG_DOMAIN=okta.booking.com
+export OKTA_AWSCLI_OIDC_CLIENT_ID=0oa69l79n9U8sx5if417
+export OKTA_AWSCLI_AWS_ACCOUNT_FEDERATION_APP_ID=0oa1t1ub0fkS0kbyp416
+export OKTA_AWSCLI_FORMAT=aws-credentials=true
+export OKTA_AWSCLI_WRITE_AWS_CREDENTIALS=true
+export OKTA_AWSCLI_OPEN_BROWSER=true
+
+
+# pnpm
+export PNPM_HOME="/Users/ghanih/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Added by Windsurf
+export PATH="/Users/ghanih/.codeium/windsurf/bin:$PATH"
+
+nvm use 20 
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
